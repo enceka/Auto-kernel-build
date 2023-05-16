@@ -13,7 +13,7 @@ jobs:
       - name: 环境准备
         run: |
           sudo apt update -y
-          sudo apt-get install -y zipalign openssl ccache bc bash git-core gnupg build-essential zip curl make automake autogen autoconf autotools-dev libtool shtool python  m4 gcc libtool zlib1g-dev flex libssl-dev gcc-aarch64-linux-gnu gcc-arm-linux-gnueabi python2
+          sudo apt-get install -y zipalign openssl ccache bc bash git-core gnupg build-essential zip curl make automake autogen autoconf autotools-dev libtool shtool  m4 gcc libtool zlib1g-dev flex libssl-dev gcc-aarch64-linux-gnu gcc-arm-linux-gnueabi python2
       - name: 拉取源代码和工具链
         run: |
           git clone https://github.com/enceka/aquos_kernel_sharp_sh04h/ --depth=1
