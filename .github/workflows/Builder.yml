@@ -17,6 +17,7 @@ jobs:
           sudo apt-get install git ccache automake flex lzop bison gperf build-essential zip curl zlib1g-dev g++-multilib libxml2-utils bzip2 libbz2-dev libbz2-1.0 libghc-bzlib-dev squashfs-tools pngcrush schedtool dpkg-dev liblz4-tool make optipng maven libssl-dev pwgen libswitch-perl policycoreutils minicom libxml-sax-base-perl libxml-simple-perl bc libc6-dev-i386 lib32ncurses5-dev libx11-dev lib32z-dev libgl1-mesa-dev xsltproc unzip device-tree-compiler python2 python3
       - name: 拉取源代码和工具链
         run: |
+          cd ~
           git clone https://github.com/enceka/android_kernel_xiaomi_diting/ --depth=1
           git clone https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86 --depth=1
           ls linux-x86/
@@ -25,12 +26,13 @@ jobs:
 
       - name: 构建内核
         run: |
-          export CLANG_DIR=../clang
+          cd ~
+          export CLANG_DIR=~/clang
           export KBUILD_BUILD_USER="enceka"
           export KBUILD_BUILD_HOST="Workspace"
           args="O=../out ARCH=arm64 CC=${CLANG_DIR}/bin/clang CLANG_TRIPLE=aarch64-linux-gnu- CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_ARM32=arm-linux-gnueabi- LD=${CLANG_DIR}/bin/ld.lld"
           cd android_kernel_xiaomi_diting/
-          make ${args} diting_defconfig
+          make ${args} gki_defconfig
           make -j$(nproc --all) ${args}
           
       - name: 上传内核
