@@ -19,7 +19,7 @@ jobs:
         run: |
           git clone https://github.com/enceka/android_kernel_xiaomi_diting/ --depth=1
           git clone https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86 --depth=1
-          mv linux-x86/clang-r416183c clang
+          mv linux-x86/clang-r416183b1  clang
           rm -rf linux-x86
 
       - name: 构建内核
