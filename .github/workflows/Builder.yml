@@ -16,7 +16,7 @@ jobs:
           sudo apt-get install -y zipalign openssl ccache bc bash git-core gnupg build-essential zip curl make automake autogen autoconf autotools-dev libtool shtool  m4 gcc libtool zlib1g-dev flex libssl-dev gcc-aarch64-linux-gnu gcc-arm-linux-gnueabi python2
       - name: 拉取源代码和工具链
         run: |
-          git clone https://github.com/enceka/aquos_kernel_sharp_sh04h/ --depth=1
+          git clone https://github.com/enceka/android_kernel_xiaomi_diting/ --depth=1
           git clone https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86 --depth=1
           mv linux-x86/clang-r416183c clang
           rm -rf linux-x86
@@ -27,8 +27,8 @@ jobs:
           export KBUILD_BUILD_USER="enceka"
           export KBUILD_BUILD_HOST="Workspace"
           args="O=../out ARCH=arm64 CC=${CLANG_DIR}/bin/clang CLANG_TRIPLE=aarch64-linux-gnu- CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_ARM32=arm-linux-gnueabi- LD=${CLANG_DIR}/bin/ld.lld"
-          cd aquos_kernel_sharp_sh04h
-          make ${args} sh04h_defconfig
+          cd android_kernel_xiaomi_diting/
+          make ${args} diting_defconfig
           make -j$(nproc --all) ${args}
           
       - name: 上传内核
