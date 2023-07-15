@@ -14,7 +14,7 @@ jobs:
         run: |
           echo "BUILD_TIME=$(TZ=Asia/Shanghai date "+%Y%m%d%H%M")" >> $GITHUB_ENV
           sudo apt update -y
-          sudo apt-get install cpio git ccache automake flex lzop bison gperf build-essential zip curl zlib1g-dev g++-multilib libxml2-utils bzip2 libbz2-dev libbz2-1.0 libghc-bzlib-dev squashfs-tools pngcrush schedtool dpkg-dev liblz4-tool make optipng maven libssl-dev pwgen libswitch-perl policycoreutils minicom libxml-sax-base-perl libxml-simple-perl bc libc6-dev-i386 lib32ncurses5-dev libx11-dev lib32z-dev libgl1-mesa-dev xsltproc unzip device-tree-compiler python2 python3
+          sudo apt-get install gcc-aarch64-linux-gnu cpio git ccache automake flex lzop bison gperf build-essential zip curl zlib1g-dev g++-multilib libxml2-utils bzip2 libbz2-dev libbz2-1.0 libghc-bzlib-dev squashfs-tools pngcrush schedtool dpkg-dev liblz4-tool make optipng maven libssl-dev pwgen libswitch-perl policycoreutils minicom libxml-sax-base-perl libxml-simple-perl bc libc6-dev-i386 lib32ncurses5-dev libx11-dev lib32z-dev libgl1-mesa-dev xsltproc unzip device-tree-compiler python2 python3
       - name: 拉取源代码和工具链
         run: |
           cd ~
@@ -30,7 +30,7 @@ jobs:
           export CLANG_DIR=~/clang
           export KBUILD_BUILD_USER="enceka"
           export KBUILD_BUILD_HOST="Workspace"
-          args="O=../out ARCH=arm64 CC=${CLANG_DIR}/bin/clang CLANG_TRIPLE=aarch64-linux-gnu- CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_ARM32=arm-linux-gnueabi- LD=${CLANG_DIR}/bin/ld.lld AS=aarch64-linux-gnu-as"
+          export args="O=../out ARCH=arm64 CC=${CLANG_DIR}/bin/clang CLANG_TRIPLE=aarch64-linux-gnu- CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_ARM32=arm-linux-gnueabi- LD=${CLANG_DIR}/bin/ld.lld AS=aarch64-linux-gnu-as"
           cd android_kernel_xiaomi_diting/
           make ${args} gki_defconfig
           make -j$(nproc --all) ${args}
