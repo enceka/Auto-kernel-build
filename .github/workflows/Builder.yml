@@ -34,6 +34,7 @@ jobs:
           cd android_kernel_xiaomi_diting/
           make ${args} diting_GKI_defconfig
           make -j$(nproc --all) ${args}
+          ls ../out/arch/arm64/boot
           
       - name: 上传内核
 
