@@ -32,7 +32,7 @@ jobs:
           export KBUILD_BUILD_HOST="Workspace"
           export args="O=../out ARCH=arm64 CC=${CLANG_DIR}/bin/clang CLANG_TRIPLE=aarch64-linux-gnu- CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_ARM32=arm-linux-gnueabi- LD=${CLANG_DIR}/bin/ld.lld AS=aarch64-linux-gnu-as"
           cd android_kernel_xiaomi_diting/
-          make ${args} diting_GKI_defconfig
+          make ${args} gki_defconfig
           make -j$(nproc --all) ${args}
           ls ../out/arch/arm64/boot
           
